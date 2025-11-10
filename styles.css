@@ -1,0 +1,259 @@
+:root{
+  --bg-gradient-1: linear-gradient(90deg,#ff9a9e 0%, #fecfef 100%);
+  --accent: #ff6b6b;
+  --font: 'Offside', sans-serif;
+}
+
+*{box-sizing:border-box}
+body {
+  font-family: var(--font);
+  margin: 0;
+  color: #222;
+  /* Fondo con imagen + degradado sutil encima */
+  background: 
+    linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+    url('assets/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.site-header{background:transparent}
+.site-title{font-size:1.25rem;color:#fff}
+
+.bg-gradient{background:var(--bg-gradient-1)}
+
+.hero{background-image:url('assets/hero-bg.jpg');background-size:cover ;background-position:center;padding:6rem 0}
+.hero h2{font-weight:700}
+
+.main{padding:2rem 0}
+
+.product-card{width:260px}
+.product-card img{max-width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+/* Productos: usar flexbox para organizar cards */
+#lista-productos{display:flex;flex-wrap:wrap}
+.card{border-radius:12px}
+
+/* Reseñas en grid */
+.grid-reseñas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.reseña{background:white;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
+
+/* Contacto responsive */
+@media (max-width:767px){
+  .hero{padding:3rem 1rem}
+  .product-card{width:100%}
+}
+
+/* Accesibilidad: foco visible */
+:focus{outline:3px solid rgba(255,107,107,0.35);outline-offset:3px}
+
+/* ==== HERO SLIDER ==== */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+}
+
+/* Cada slide */
+.hero-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: fadeSlider 18s infinite;
+}
+
+/* Tres imágenes con tiempos distintos */
+.hero-slider .slide:nth-child(1) {
+  animation-delay: 0s;
+}
+.hero-slider .slide:nth-child(2) {
+  animation-delay: 6s;
+}
+.hero-slider .slide:nth-child(3) {
+  animation-delay: 12s;
+}
+
+/* Animación principal */
+@keyframes fadeSlider {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  30% { opacity: 1; }
+  35% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Contenido centrado */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  backdrop-filter: blur(3px);
+}
+
+/* Texto responsivo */
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Ajuste en pantallas chicas */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 1rem 1.5rem;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+h3 {
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  font-family: "Offside";
+}
+
+.offside-regular {
+  font-family: "Offside", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ==== HEADER FIJO, SIN SOLAPAR SCROLL ==== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* ajustá si tu header es más alto */
+  z-index: 1000;
+
+  /* Fondo tipo vidrio, pero más opaco para que nada se vea detrás */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ==== MAIN: arranca justo debajo del header ==== */
+main {
+  margin-top: 80px; /* igual que la altura del header */
+  padding-top: 2rem;
+}
+
+/* === Filtros y búsqueda === */
+#productos .d-flex.flex-wrap.gap-3 {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#productos label {
+  font-weight: 600;
+  color: #333;
+}
+
+#productos select,
+#productos input[type="text"] {
+  min-width: 180px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+}
+
+#productos select:focus,
+#productos input[type="text"]:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+/* === Tarjetas de productos === */
+.product-card {
+  flex: 1 1 200px;
+  max-width: 250px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.product-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card p {
+  color: #007bff;
+  font-weight: 500;
+}
+
+/* === Toast flotante === */
+.toast-message {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #212529;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  animation: fadein 0.3s, fadeout 0.5s 2s;
+  z-index: 9999;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  #productos .d-flex.flex-wrap.gap-3 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .product-card {
+    max-width: 100%;
+  }
+}
