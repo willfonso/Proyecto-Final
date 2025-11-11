@@ -1,4 +1,4 @@
-const API_URL = 'https://api.myjson.online/v1/records/e6f72fd2-9490-4957-a4c0-28c20ed6e19b';
+const API_URL = 'https://api.npoint.io/213d756b1bec1669ec20';
 
 const listaProductos = document.getElementById('lista-productos');
 const cartCount = document.getElementById('cart-count');
@@ -166,7 +166,7 @@ function renderCart() {
       <img src="${item.image}" alt="${item.title}" width="64" height="64" style="object-fit:cover;border-radius:6px">
       <div class="flex-grow-1">
         <strong>${item.title}</strong>
-        <div>$${item.price.toFixed(2)} c/u</div>
+        <div>$${item.price.toFixed(0)} c/u</div>
       </div>
       <div>
         <input type="number" min="1" value="${item.qty}" data-id="${id}" class="form-control qty-cart" style="width:90px">
@@ -180,7 +180,7 @@ function renderCart() {
     total += item.price * item.qty;
   });
 
-  cartTotalEl.textContent = total.toFixed(2);
+  cartTotalEl.textContent = total.toFixed(0);
 
   cartItemsContainer.querySelectorAll('.qty-cart').forEach((input) => {
     input.addEventListener('change', (e) => {
